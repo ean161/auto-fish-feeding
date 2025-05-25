@@ -1,24 +1,25 @@
-import React from 'react';
-import {
-	SafeAreaView,
-	Text,
-	StatusBar,
-	StyleSheet
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Auth from './src/screens/auth';
+import Home from './src/screens/home';
+
+const Stack = createStackNavigator();
 
 function App() {
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text>Its workinggg</Text>
-		</SafeAreaView>
-	);
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen name="Auth" component={Auth} options={{
+					headerShown: false,
+					statusBarHidden: true
+				}} />
+				<Stack.Screen name="Home" component={Home} options={{
+					headerShown: false,
+					statusBarHidden: true
+				}} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-	}
-});
 
 export default App;
