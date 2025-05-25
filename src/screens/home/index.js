@@ -1,5 +1,5 @@
 import { View, SafeAreaView } from 'react-native'
-import {Text} from 'react-native-ui-lib';
+import { Text } from 'react-native-ui-lib';
 import styles from './../../../src/theme';
 
 export default function Home() {
