@@ -9,7 +9,7 @@ import {
 function App() {
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text>Its working</Text>
+			<Text>Its workinggg</Text>
 		</SafeAreaView>
 	);
 }
