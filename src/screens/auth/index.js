@@ -4,36 +4,35 @@ import { View, Text, Colors, Image, TextField, Button } from 'react-native-ui-li
 import styles from './../../theme';
 import Storage from './../../utils/storage';
 import verifyDeviceCode from '../../api/verifyDeviceCode';
-import ToastManager, { Toast } from 'toastify-react-native'
+import ToastManager, { Toast } from 'toastify-react-native';
 
 export default function Auth({ navigation }) {
 	const [deviceCode, setDeviceCode] = useState("Unknown");
 	const [authRes, setAuthRes] = useState();
-	const [deviceInputColor, setDeviceInputColor] = useState("white");
-	console.log(122);
 
 	useEffect(() => {
-		const getDeviceCode = async () => {
-			setDeviceCode(await Storage.get("deviceCode"));
+		const handleStoredCode = async () => {
+			const storedCode = await Storage.get("deviceCode");
+			handleDeviceCode(storedCode);
+			setDeviceCode(storedCode);
 		}
 
-		getDeviceCode();
+		handleStoredCode();
 	}, []);
 
-	useEffect(() => {
-		if (deviceInputColor != "white") {
-			setDeviceInputColor("white");
-		}
-	}, [deviceCode]);
-
-	const handleDeviceCode = async () => {
-		const verifyRes = await verifyDeviceCode(deviceCode);
+	const handleDeviceCode = async (code) => {
+		const verifyRes = await verifyDeviceCode(code);
 		setAuthRes(verifyRes);
 
 		if (verifyRes.status == 0) {
-			setDeviceInputColor("red");
+			Toast.show({
+				type: "error",
+				text1: "Thất bại",
+				text2: verifyRes.message,
+				position: "bottom",
+			});
 		} else {
-			await Storage.set("deviceCode", deviceCode);
+			await Storage.set("deviceCode", code);
 			navigation.push("Home");
 		}
 	}
@@ -64,17 +63,20 @@ export default function Auth({ navigation }) {
 								textAlign: "center"
 							}}
 							style={{
-								color: deviceInputColor,
+								color: "white",
 								textAlign: "center"
 							}}
 							placeholderTextColor="#e6e8eb"
 							onChangeText={setDeviceCode}
+							onSubmitEditing={() => {
+								handleDeviceCode(deviceCode);
+							}}
 						/>
 						<Button
 							label={"Kết nối"}
 							backgroundColor={Colors.blue30}
 							onPress={() => {
-								handleDeviceCode();
+								handleDeviceCode(deviceCode);
 							}}
 						/>
 					</View>
