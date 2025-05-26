@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#1d2041',
-		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+		paddingVertical: Platform.OS === "android" ? StatusBar.currentHeight : 0
 	},
 	wrapper: {
 		padding: 16,
@@ -16,6 +16,13 @@ const styles = StyleSheet.create({
 	},
 	textWhite: {
 		color: "white"
+	},
+	credit: {
+		position: "absolute",
+		bottom: 16,
+		width: "100%",
+		textAlign: "center",
+		color: "#e6e8eb"
 	}
 });
 

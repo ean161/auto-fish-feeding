@@ -6,4 +6,4 @@ const verifyDeviceCode = async (deviceCode) => {
     });
 }
 
-export default auth;
+export default verifyDeviceCode;

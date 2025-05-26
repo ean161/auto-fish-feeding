@@ -5,7 +5,8 @@ const API = {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "User-Agent": "ReactNative"
                 },
             });
 
@@ -23,7 +24,8 @@ const API = {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "User-Agent": "ReactNative"
                 },
                 body: JSON.stringify(payload),
             });

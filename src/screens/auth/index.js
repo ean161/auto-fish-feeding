@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, Alert } from 'react-native'
 import { View, Text, Colors, Image, TextField, Button } from 'react-native-ui-lib';
 import styles from './../../theme';
 import Storage from './../../utils/storage';
 import verifyDeviceCode from '../../api/verifyDeviceCode';
+import ToastManager, { Toast } from 'toastify-react-native'
 
-export default function Auth() {
+export default function Auth({ navigation }) {
 	const [deviceCode, setDeviceCode] = useState("Unknown");
 	const [authRes, setAuthRes] = useState();
+	const [deviceInputColor, setDeviceInputColor] = useState("white");
+	console.log(122);
 
 	useEffect(() => {
 		const getDeviceCode = async () => {
@@ -17,10 +20,22 @@ export default function Auth() {
 		getDeviceCode();
 	}, []);
 
-	const enterDeviceCode = async () => {
-		console.log(deviceCode);
-		setAuthRes(await verifyDeviceCode(deviceCode));
-		await Storage.set("deviceCode", deviceCode);
+	useEffect(() => {
+		if (deviceInputColor != "white") {
+			setDeviceInputColor("white");
+		}
+	}, [deviceCode]);
+
+	const handleDeviceCode = async () => {
+		const verifyRes = await verifyDeviceCode(deviceCode);
+		setAuthRes(verifyRes);
+
+		if (verifyRes.status == 0) {
+			setDeviceInputColor("red");
+		} else {
+			await Storage.set("deviceCode", deviceCode);
+			navigation.push("Home");
+		}
 	}
 
 	return (
@@ -45,11 +60,11 @@ export default function Auth() {
 							width={150}
 							placeholder="Nhập mã thiết bị"
 							textStyle={{
-								textAlign: "center",
-								color: "white"
+								color: "white",
+								textAlign: "center"
 							}}
 							style={{
-								color: "white",
+								color: deviceInputColor,
 								textAlign: "center"
 							}}
 							placeholderTextColor="#e6e8eb"
@@ -59,20 +74,14 @@ export default function Auth() {
 							label={"Kết nối"}
 							backgroundColor={Colors.blue30}
 							onPress={() => {
-								enterDeviceCode();
+								handleDeviceCode();
 							}}
 						/>
 					</View>
 				</View>
 				<Text
 					center
-					style={{
-						position: "absolute",
-						bottom: 0,
-						width: "100%",
-						textAlign: "center",
-						color: "#e6e8eb"
-					}}
+					style={styles.credit}
 				>Auto fish feeding @G3 {deviceCode} {JSON.stringify(authRes)}</Text>
 			</View>
 		</SafeAreaView>
