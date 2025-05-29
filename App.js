@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ToastManager, { Toast } from 'toastify-react-native';
+import ToastManager from 'toastify-react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Auth from './src/screens/auth';
 import Home from './src/screens/home';

@@ -58,6 +58,33 @@ const styles = StyleSheet.create({
 	},
 	errorNotify: {
 		backgroundColor: "#FF5722"
+	},
+	wheel: {
+		width: 100,
+	},
+	header: {
+		backgroundColor: "#242852",
+		paddingVertical: 6,
+		paddingHorizontal: 6,
+		borderRadius: 50,
+		marginBottom: 16,
+		flexDirection: "row",
+		alignItems: "center",
+	},
+	headerIcon: {
+		width: 40,
+		height: 40,
+		resizeMode: "contain",
+		marginRight: 10,
+		backgroundColor: "#1d2041",
+		padding: 3,
+		borderRadius: 50
+	},
+	headerTitle: {
+
+	},
+	headerDeviceName: {
+
 	}
 });
 

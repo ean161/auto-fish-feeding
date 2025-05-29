@@ -4,11 +4,10 @@ import { View, Text, Colors, Image, TextField, Button } from 'react-native-ui-li
 import styles from './../../theme';
 import Storage from './../../utils/storage';
 import verifyDeviceCode from '../../api/verifyDeviceCode';
-import ToastManager, { Toast } from 'toastify-react-native';
+import { Toast } from 'toastify-react-native';
 
 export default function Auth({ navigation }) {
 	const [deviceCode, setDeviceCode] = useState("Unknown");
-	const [authRes, setAuthRes] = useState();
 
 	useEffect(() => {
 		const handleStoredCode = async () => {
@@ -22,7 +21,6 @@ export default function Auth({ navigation }) {
 
 	const handleDeviceCode = async (code) => {
 		const verifyRes = await verifyDeviceCode(code);
-		setAuthRes(verifyRes);
 
 		if (verifyRes.status == 0) {
 			Toast.show({
@@ -54,7 +52,7 @@ export default function Auth({ navigation }) {
 						marginT-50
 						text30BO
 					>AFF</Text>
-					<View row centerV marginT-15>
+					<View row centerV marginT-15 zIndex-200>
 						<TextField
 							width={150}
 							placeholder="Nhập mã thiết bị"
@@ -66,14 +64,17 @@ export default function Auth({ navigation }) {
 								color: "white",
 								textAlign: "center"
 							}}
+							hitSlop={300}
 							placeholderTextColor="#e6e8eb"
 							onChangeText={setDeviceCode}
+							height={50}
 							onSubmitEditing={() => {
 								handleDeviceCode(deviceCode);
 							}}
 						/>
 						<Button
 							label={"Kết nối"}
+							enableShadow
 							backgroundColor={Colors.blue30}
 							onPress={() => {
 								handleDeviceCode(deviceCode);
@@ -84,7 +85,7 @@ export default function Auth({ navigation }) {
 				<Text
 					center
 					style={styles.credit}
-				>Auto fish feeding @G3 {deviceCode} {JSON.stringify(authRes)}</Text>
+				>Auto fish feeding @G3 {deviceCode}</Text>
 			</View>
 		</SafeAreaView>
 	)
