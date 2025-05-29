@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
 	},
 	wrapper: {
 		padding: 16,
-		paddingTop: 25,
 		height: "100%"
 	},
 	textWhite: {
@@ -63,28 +62,19 @@ const styles = StyleSheet.create({
 		width: 100,
 	},
 	header: {
-		backgroundColor: "#242852",
-		paddingVertical: 6,
-		paddingHorizontal: 6,
-		borderRadius: 50,
-		marginBottom: 16,
+		// paddingHorizontal: 6,
+		// borderRadius: 50,
+		marginBottom: 32,
 		flexDirection: "row",
 		alignItems: "center",
+		justifyContent: "center"
 	},
 	headerIcon: {
-		width: 40,
-		height: 40,
-		resizeMode: "contain",
-		marginRight: 10,
-		backgroundColor: "#1d2041",
-		padding: 3,
-		borderRadius: 50
+		position: "absolute",
+		left: 0
 	},
 	headerTitle: {
-
-	},
-	headerDeviceName: {
-
+		// alignItems: "center"
 	}
 });
 

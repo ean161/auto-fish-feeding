@@ -4,17 +4,12 @@ import { Text, Button, Toast, Colors } from 'react-native-ui-lib';
 import { Picker } from '@react-native-picker/picker';
 import styles from './../../theme';
 
-export default function Timer({ label, selectedHour, setSelectedHour, selectedMin, setSelectedMin }) {
+export default function Timer({selectedHour, setSelectedHour, selectedMin, setSelectedMin }) {
 	return (
-		<View style={{
-			// marginHorizontal: 50
-		}}>
-			<Text
-				white
-			>{label}</Text>
+		<View>
 			<View style={{
 				flexDirection: "row",
-				// marginHorizontal: "auto"
+				marginHorizontal: "auto"
 			}}>
 				<Picker
 					selectedValue={selectedHour}
