@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center"
 	},
-	headerIcon: {
+	headerBack: {
 		position: "absolute",
 		left: 0
 	},

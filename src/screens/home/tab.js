@@ -14,7 +14,7 @@ export default function Tab({ onChangeIndex, items }) {
             outlineColor="#252954"
             // preset={screenPreset}
             style={{
-                width: 200,
+                width: 180,
                 borderColor: "#252954"
             }}
         />

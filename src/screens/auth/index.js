@@ -20,6 +20,9 @@ export default function Auth({ navigation }) {
 	}, []);
 
 	const handleDeviceCode = async (code) => {
+		if (code == "Unknown" || code == null) 
+			return;
+		
 		const verifyRes = await verifyDeviceCode(code);
 
 		if (verifyRes.status == 0) {
@@ -30,8 +33,14 @@ export default function Auth({ navigation }) {
 				position: "bottom",
 			});
 		} else {
+			Toast.show({
+				type: "success",
+				text1: "Thành công",
+				text2: verifyRes.message,
+				position: "bottom",
+			});
 			await Storage.set("deviceCode", code);
-			navigation.push("Home");
+			navigation.replace("Home");
 		}
 	}
 

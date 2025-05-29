@@ -4,7 +4,7 @@ import { Text, Button, Toast, Colors } from 'react-native-ui-lib';
 import { Picker } from '@react-native-picker/picker';
 import styles from './../../theme';
 
-export default function Timer({selectedHour, setSelectedHour, selectedMin, setSelectedMin }) {
+export default function Timer({ selectedHour, setSelectedHour, selectedMin, setSelectedMin }) {
 	return (
 		<View>
 			<View style={{
